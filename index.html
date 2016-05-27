@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html,body{
+        margin: 0;
+        overflow: hidden;
+    }
+        .box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+        var isdrag=false;
+        var offsetx=0;
+        var offsety=0;
+        $('.box').mousedown(function(event) {
+            isdrag=true;
+            offsetx=event.offsetX;
+            offsety=event.offsetY;
+        });
+        $(window).mouseup(function(event) {
+            isdrag=false;
+        });
+        $(window).mousemove(function(event) {
+            if(isdrag && event.clientY >0){
+                var x=event.clientX-offsetx;
+                var y=event.clientY-offsety;
+                $('.box').css({'left':x,'top':y});
+            }
+        });
+    </script>
+</body>
+</html>
